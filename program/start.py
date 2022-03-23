@@ -85,7 +85,7 @@ async def start_(c: Client, message: Message):
     await add_served_user(user_id)
     await message.reply_text(
         f"""Hi {message.from_user.mention()} 👋🏻\n
-💭 [{me_bot.first_name}](https://t.me/{me_bot.username}) is a bot to play music and video in groups, through the new Telegram video chats.
+💭 [{me_bot.first_name}](https://t.me/{me_bot.username}) yeni Telegram video çatları vasitəsilə qruplarda musiqi və video oynamaq üçün botdur.
 
 🕵🏻 Check out all the **Bot's commands** and how they work by clicking on the » 📚 **Commands** button!
 
@@ -94,17 +94,17 @@ async def start_(c: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("➕ Add me to a Group ➕", url=f"https://t.me/{me_bot.username}?startgroup=true")
+                    InlineKeyboardButton("➕ Məni Qrupa əlavə et ➕", url=f"https://t.me/{me_bot.username}?startgroup=true")
                 ],[
-                    InlineKeyboardButton("❓ Basic Guide", callback_data="user_guide")
+                    InlineKeyboardButton("❓ Əsas Bələdçi", callback_data="user_guide")
                 ],[
-                    InlineKeyboardButton("📚 Commands", callback_data="command_list"),
-                    InlineKeyboardButton("❤️ Donate", url=f"https://t.me/{OWNER_USERNAME}")
+                    InlineKeyboardButton("📚 Əmrlər", callback_data="command_list"),
+                    InlineKeyboardButton("❤️ Bağışlayın", url=f"https://t.me/{OWNER_USERNAME}")
                 ],[
-                    InlineKeyboardButton("👥 Support Group", url=f"https://t.me/{GROUP_SUPPORT}"),
-                    InlineKeyboardButton("📣 Support Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                    InlineKeyboardButton("👥 Dəstək Qrupu", url=f"https://t.me/{GROUP_SUPPORT}"),
+                    InlineKeyboardButton("📣 Dəstək Kanalı", url=f"https://t.me/{UPDATES_CHANNEL}")
                 ],[
-                    InlineKeyboardButton("🌐 Source Code", url="https://github.com/levina-lab/video-stream")
+                    InlineKeyboardButton("🌐 Mənbə kodu", url="https://github.com/levina-lab/video-stream")
                 ],
             ]
         ),
@@ -126,12 +126,12 @@ async def alive(c: Client, message: Message):
             [
                 InlineKeyboardButton("✨ Group", url=f"https://t.me/{GROUP_SUPPORT}"),
                 InlineKeyboardButton(
-                    "📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    "📣 Kanal", url=f"https://t.me/{UPDATES_CHANNEL}"
                 ),
             ]
         ]
     )
-    text = f"**Hello {message.from_user.mention()}, I'm {me_bot.first_name}**\n\n🧑🏼‍💻 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_USERNAME})\n👾 Bot Version: `v{__version__}`\n🔥 Pyrogram Version: `{pyrover}`\n🐍 Python Version: `{__python_version__}`\n✨ PyTgCalls Version: `{pytover.__version__}`\n🆙 Uptime Status: `{uptime}`\n\n❤ **Thanks for Adding me here, for playing video & music on your Group's video chat**"
+    text = f"**Salam {message.from_user.mention()}, I'm {me_bot.first_name}**\n\n🧑🏼‍💻 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_USERNAME})\n👾 Bot Versiyası: `v{__version__}`\n🔥 Pyrogram Version: `{pyrover}`\n🐍 Python Version: `{__python_version__}`\n✨ PyTgCalls Versiyası: `{pytover.__version__}`\n🆙 İş vaxtı statusu: `{uptime}`\n\n❤ **TMəni buraya əlavə etdiyiniz üçün, Qrupunuzun video çatında video və musiqi ifa etdiyiniz üçün təşəkkürlər**"
     await c.send_photo(
         chat_id,
         photo=f"{ALIVE_IMG}",
@@ -184,19 +184,19 @@ async def new_chat(c: Client, m: Message):
             if member.id == me_bot.id:
                 if chat_id in await blacklisted_chats():
                     await m.reply_text(
-                        "❗️ This chat has blacklisted by sudo user and You're not allowed to use me in this chat."
+                        "❗️ Bu söhbət sudo istifadəçisi tərəfindən qara siyahıya salınıb və Sizə bu söhbətdə məndən istifadə etmək icazəniz yoxdur."
                     )
                     return await bot.leave_chat(chat_id)
             if member.id == me_bot.id:
                 return await m.reply(
-                    "❤️ Thanks for adding me to the **Group** !\n\n"
-                    "Appoint me as administrator in the **Group**, otherwise I will not be able to work properly, and don't forget to type `/userbotjoin` for invite the assistant.\n\n"
-                    "Once done, then type `/reload`",
+                    "❤️ Məni **Qrupa** əlavə etdiyiniz üçün təşəkkürlər !\n\n"
+                    "Məni **Qrupa** administrator təyin edin, əks halda düzgün işləyə bilməyəcəm və yazmağı unutmayın `/userbotjoin` köməkçini dəvət etmək üçün.\n\n"
+                     "Bir dəfə tamamlayın, sonra yazın `/reload`",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                                InlineKeyboardButton("💭 Support", url=f"https://t.me/{GROUP_SUPPORT}")
+                                InlineKeyboardButton("📣 Kanal", url=f"https://t.me/{UPDATES_CHANNEL}"),
+                                InlineKeyboardButton("💭 Dəstək", url=f"https://t.me/{GROUP_SUPPORT}")
                             ],[
                                 InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{me_user.username}")
                             ]
@@ -218,8 +218,8 @@ async def chat_watcher_func(_, message: Message):
         try:
             await message.chat.ban_member(userid)
         except ChatAdminRequired:
-            LOGS.info(f"can't remove gbanned user from chat: {message.chat.id}")
+            LOGS.info(f"qadağan edilmiş istifadəçini söhbətdən silə bilməz: {message.chat.id}")
             return
         await message.reply_text(
-            f"👮🏼 (> {suspect} <)\n\n**Gbanned** user detected, that user has been gbanned by sudo user and was blocked from this Chat !\n\n🚫 **Reason:** potential spammer and abuser."
+            f"👮🏼 (> {suspect} <)\n\n**Qadağan edilmiş** istifadəçi aşkarlandı, həmin istifadəçi sudo istifadəçisi tərəfindən bloklanıb və bu Çatdan bloklanıb!\n\n🚫 **Səbəb:** potensial spamer və sui-istifadəçi."
         )
